@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untuk Pacarku Tersayang ❤️</title>
+    <title>SELAMAT ULANG TAHUN BUNGA AMELIA ❤️</title>
     <style>
         * {
             margin: 0;
@@ -18,195 +18,232 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow-x: hidden;
-            position: relative;
+            overflow: hidden;
+            perspective: 2000px;
         }
 
-        .container {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            max-width: 500px;
-            width: 90%;
-            animation: float 3s ease-in-out infinite;
+        .book {
+            width: 450px;
+            height: 600px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            animation: float 4s ease-in-out infinite;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); }
         }
 
-        .heart {
-            font-size: 60px;
-            color: #ff6b6b;
-            animation: heartbeat 1.5s ease-in-out infinite;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        .title {
-            color: white;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            font-weight: bold;
-        }
-
-        .message {
-            color: white;
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        .button {
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.1em;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
-            margin: 10px;
-            font-weight: bold;
-        }
-
-        .button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
-        }
-
-        .floating-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .page {
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: -1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: left;
+            transform-style: preserve-3d;
+            transition: transform 1s ease-in-out;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .page:nth-of-type(1) { z-index: 5; }
+        .page:nth-of-type(2) { z-index: 4; }
+        .page:nth-of-type(3) { z-index: 3; }
+        .page:nth-of-type(4) { z-index: 2; }
+        .page.back-cover { z-index: 1; }
+
+        .page-front, .page-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backface-visibility: hidden;
+            background-color: #fff;
         }
 
+        .page-back {
+            transform: rotateY(180deg);
+        }
+
+        .page.flipped {
+            transform: rotateY(-180deg);
+        }
+        
+        .cover-front {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            text-align: center;
+        }
+        .cover-front h1 {
+            font-size: 2.2em;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            font-weight: bold;
+        }
+        .cover-front h2 {
+            font-size: 1.8em;
+            font-weight: normal;
+            margin-top: 10px;
+        }
+        .cover-front .birthday-badge {
+            width: 200px;
+            height: auto;
+            margin: 25px 0;
+        }
+        .cover-front .instruction {
+            font-style: italic;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        .page-content {
+            text-align: center;
+            color: #333;
+        }
+        .page-content img, 
+        .page-content video {
+            width: 80%;
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            margin-bottom: 25px;
+        }
+        .page-content p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #555;
+            padding: 0 20px;
+        }
+
+        .back-cover-content {
+             background: linear-gradient(45deg, #764ba2, #667eea);
+             color: white;
+             font-size: 1.5em;
+        }
+        
+        .floating-hearts {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: -1;
+        }
         .floating-heart {
-            position: absolute;
-            color: rgba(255, 107, 107, 0.6);
-            font-size: 20px;
+            position: absolute; color: rgba(255, 107, 107, 0.6); font-size: 20px;
             animation: floatUp 4s linear infinite;
         }
-
         @keyframes floatUp {
-            0% {
-                opacity: 0;
-                transform: translateY(100vh) rotate(0deg);
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-100px) rotate(360deg);
-            }
+            0% { opacity: 0; transform: translateY(100vh) rotate(0deg); }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-100px) rotate(360deg); }
         }
-
-        .surprise-message {
-            display: none;
-            background: rgba(255, 255, 255, 0.95);
-            color: #333;
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 20px;
-            animation: fadeIn 0.5s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .love-counter {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 20px;
-            color: white;
-        }
-
-        .counter-number {
-            font-size: 2em;
-            font-weight: bold;
-            color: #ff6b6b;
-        }
-
+        
         @media (max-width: 600px) {
-            .title { font-size: 2em; }
-            .message { font-size: 1em; }
-            .container { padding: 30px 20px; }
+            .book { width: 300px; height: 400px; }
+            .page-content p { font-size: 1em; }
+            .cover-front h1 { font-size: 1.5em; }
+            .cover-front h2 { font-size: 1.2em; }
+            .cover-front .birthday-badge { width: 150px; }
         }
     </style>
 </head>
 <body>
     <div class="floating-hearts" id="heartsContainer"></div>
-    
-    <div class="container">
-        <div class="heart">💖</div>
-        <h1 class="title">Untuk Pacarku Tersayang</h1>
-        <p class="message">
-            Kamu adalah cahaya dalam hidupku,<br>
-            Senyummu adalah kebahagiaanku,<br>
-            Dan cintamu adalah segalanya bagiku ✨
-        </p>
+
+    <div class="book" id="book">
         
-        <button class="button" onclick="showSurprise()">Klik untuk Kejutan! 💕</button>
-        <button class="button" onclick="generatePoem()">Puisi Cinta 📝</button>
-        
-        <div class="love-counter">
-            <div>Aku mencintaimu sebanyak:</div>
-            <div class="counter-number" id="loveCounter">∞</div>
-            <div>kali dalam sehari!</div>
+        <div class="page" id="page1">
+            <div class="page-front cover-front">
+                <h1>Selamat Ulang Tahun</h1>
+                <h2>Bunga Amelia</h2>
+                <img src="https://png.pngtree.com/png-vector/20240612/ourmid/pngtree-20th-happy-anniversary-design-vector-png-image_12718962.png" class="birthday-badge" alt="Selamat Ulang Tahun ke-20">
+                <p>yang ke-20 ❤️</p>
+                <p>04 - 09 - 2025</p>
+                <p class="instruction">(Klik untuk membuka)</p>
+            </div>
+            <div class="page-back">
+                <div class="page-content">
+                    <video src="Video_Ucapan_Ulang_Tahun_ke_.mp4" controls autoplay muted loop></video>
+                    <p>Semoga di hari spesial ini, kamu selalu diberi kebahagiaan dan semua impianmu tercapai! 🎂</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page" id="page2">
+            <div class="page-front">
+                 <div class="page-content">
+                    <img src="foto1.jpg.jpg" alt="Foto Kenangan 1">
+                    <p>Terima kasih sudah menjadi orang yang luar biasa. Kamu membuat hariku penuh warna! 🌈</p>
+                 </div>
+            </div>
+            <div class="page-back">
+                <div class="page-content">
+                    <img src="Screenshot 2025-08-15 103125.png" alt="Foto Kenangan 2">
+                    <p>Jangan pernah berubah, tetaplah menjadi Bunga yang aku kenal. 🌸</p>
+                </div>
+            </div>
         </div>
         
-        <div class="surprise-message" id="surpriseMsg">
-            <h3>💕 Pesan Spesial 💕</h3>
-            <p id="randomMessage"></p>
+        <div class="page" id="page3">
+            <div class="page-front">
+                 <div class="page-content">
+                    <img src="Gambar WhatsApp 2025-08-15 pukul 10.08.44_19d63786.jpg" alt="Foto Kenangan 3">
+                    <p>Aku sangat beruntung memilikimu dalam hidupku. 🍀</p>
+                </div>
+            </div>
+            <div class="page-back">
+                <div class="page-content">
+                    <img src="Screenshot 2025-08-15 103125.png" alt="Foto Kenangan 4">
+                    <p>Semua doa terbaik untukmu di hari ulang tahunmu dan selamanya! 🙏</p>
+                </div>
+            </div>
         </div>
+
+        <div class="page back-cover" id="page4">
+            <div class="page-front">
+                <div class="page-content">
+                    <img src="Gambar WhatsApp 2025-08-15 pukul 10.08.44_19d63786.jpg" alt="Foto Kenangan 5">
+                    <p>Sekali lagi, selamat ulang tahun ya! 🎉</p>
+                </div>
+            </div>
+            <div class="page-back back-cover-content">
+                <p>From someone who<br>adores you ❤️</p>
+            </div>
+        </div>
+
     </div>
 
     <script>
-        // Pesan-pesan romantis
-        const romanticMessages = [
-            "Setiap detik bersamamu adalah hadiah terbaik dari Tuhan 🎁",
-            "Kamu membuat hari-hariku penuh warna dan makna 🌈",
-            "Tanpamu, dunia ini akan kehilangan keindahannya 🌸",
-            "Aku beruntung memiliki seseorang sepertimu dalam hidupku 🍀",
-            "Cintaku padamu akan terus bertumbuh setiap harinya 🌱",
-            "Kamu adalah jawaban dari semua doa-doaku 🙏",
-            "Bersamamu, aku merasa lengkap dan bahagia 💫",
-            "Kamu adalah definisi sempurna dari kata 'cinta' 💝"
-        ];
+        const pages = document.querySelectorAll('.page');
+        let currentMaxZIndex = pages.length;
 
-        const poems = [
-            "Bintang di langit tak sebening matamu,\nBulan purnama tak secantik senyummu,\nAngin sepoi tak selembut suaramu,\nKarena kamu adalah segalanya bagiku 💕",
-            
-            "Di setiap pagi aku bersyukur,\nKarena Tuhan memberikanku kamu,\nSeseorang yang tulus dan penuh kasih,\nYang membuat hidupku bermakna 🌅",
-            
-            "Jika cinta adalah lautan,\nMaka cintaku padamu adalah samudera,\nTak bertepi dan tak berujung,\nSelamanya mengalir dalam jiwaku 🌊"
-        ];
+        pages.forEach(page => {
+            page.addEventListener('click', function() {
+                const isLastPage = this.classList.contains('back-cover');
+                this.classList.toggle('flipped');
+                const isFlipped = this.classList.contains('flipped');
 
-        // Buat hati terbang
+                if (isFlipped) {
+                    currentMaxZIndex++;
+                    this.style.zIndex = currentMaxZIndex;
+                }
+
+                if (isLastPage && isFlipped) {
+                    setTimeout(() => {
+                        pages.forEach(p => {
+                            p.classList.remove('flipped');
+                        });
+                        currentMaxZIndex = pages.length;
+                    }, 1500);
+                }
+            });
+        });
+
         function createFloatingHeart() {
             const heart = document.createElement('div');
             heart.className = 'floating-heart';
@@ -214,77 +251,10 @@
             heart.style.left = Math.random() * 100 + '%';
             heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
             heart.style.animationDelay = Math.random() * 2 + 's';
-            
             document.getElementById('heartsContainer').appendChild(heart);
-            
-            setTimeout(() => {
-                heart.remove();
-            }, 5000);
+            setTimeout(() => { heart.remove(); }, 5000);
         }
-
-        // Tampilkan kejutan
-        function showSurprise() {
-            const surpriseMsg = document.getElementById('surpriseMsg');
-            const randomMsg = document.getElementById('randomMessage');
-            
-            const randomIndex = Math.floor(Math.random() * romanticMessages.length);
-            randomMsg.textContent = romanticMessages[randomIndex];
-            
-            surpriseMsg.style.display = 'block';
-            
-            // Buat banyak hati
-            for(let i = 0; i < 10; i++) {
-                setTimeout(() => createFloatingHeart(), i * 200);
-            }
-        }
-
-        // Generate puisi
-        function generatePoem() {
-            const surpriseMsg = document.getElementById('surpriseMsg');
-            const randomMsg = document.getElementById('randomMessage');
-            
-            const randomIndex = Math.floor(Math.random() * poems.length);
-            randomMsg.innerHTML = poems[randomIndex];
-            
-            surpriseMsg.style.display = 'block';
-            
-            // Efek hati
-            for(let i = 0; i < 15; i++) {
-                setTimeout(() => createFloatingHeart(), i * 100);
-            }
-        }
-
-        // Counter cinta yang berubah
-        function updateLoveCounter() {
-            const counter = document.getElementById('loveCounter');
-            const numbers = ['∞', '💯', '9999+', '∞', '🔥'];
-            let index = 0;
-            
-            setInterval(() => {
-                counter.textContent = numbers[index % numbers.length];
-                index++;
-            }, 2000);
-        }
-
-        // Mulai animasi hati otomatis
-        setInterval(createFloatingHeart, 3000);
-        
-        // Mulai counter
-        updateLoveCounter();
-
-        // Easter egg - klik hati besar
-        document.querySelector('.heart').addEventListener('click', function() {
-            this.style.transform = 'scale(1.5) rotate(360deg)';
-            this.style.transition = 'all 0.5s ease';
-            
-            setTimeout(() => {
-                this.style.transform = 'scale(1) rotate(0deg)';
-            }, 500);
-            
-            for(let i = 0; i < 20; i++) {
-                setTimeout(() => createFloatingHeart(), i * 50);
-            }
-        });
+        setInterval(createFloatingHeart, 2000);
     </script>
 </body>
 </html>
